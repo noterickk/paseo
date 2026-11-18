@@ -145,6 +145,12 @@ buildNpmPackage rec {
     runHook postInstall
   '';
 
+  env = {  
+    EXPO_NO_TELEMETRY = "1";  
+    CI = "1";  
+    NODE_OPTIONS = "--max-old-space-size=4096";  
+  };
+
   meta = {
     description = "Self-hosted daemon for Claude Code, Codex, and OpenCode";
     homepage = "https://github.com/getpaseo/paseo";
@@ -153,3 +159,4 @@ buildNpmPackage rec {
     platforms = lib.platforms.linux ++ lib.platforms.darwin;
   };
 }
+
